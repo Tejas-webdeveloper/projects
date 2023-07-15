@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Booking Appointment App</title>
+</head>
+<body>
+  <h2>User Details Form</h2>
+  <form id="userDetailsForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" required>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" required>
+
+    <label for="age">Age:</label>
+    <input type="number" id="age" required>
+
+    <input type="submit" value="Submit">
+  </form>
+
+  <script>
+    
+    function handleSubmit(event) {
+      event.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const age = document.getElementById("age").value;
+
+      const userDetails = {
+        name: name,
+        email: email,
+        age: age,
+      };
+
+      const userDetailsJSON = JSON.stringify(userDetails);
+
+      localStorage.setItem("userDetails", userDetailsJSON);
+
+      alert("User details have been saved successfully!");
+
+      document.getElementById("userDetailsForm").reset();
+    }
+
+    
+    document.getElementById("userDetailsForm").addEventListener("submit", handleSubmit);
+  </script>
+</body>
+</html>
