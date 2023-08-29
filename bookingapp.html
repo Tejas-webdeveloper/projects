@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Search Items</title>
+</head>
+<body>
+<input type="text" id="search" placeholder="Enter search string">
+<button>submit</button>
+<ul id="items">
+</ul>
+<script>
+var items = [
+  {
+    name: "Item 1",
+    description: "This is the description of item 1."
+  },
+  {
+    name: "Item 2",
+    description: "This is the description of item 2."
+  },
+  {
+    name: "Item 3",
+    description: "This is the description of item 3."
+  }
+];
+
+function search() {
+  var searchString = document.getElementById("search").value;
+  var filteredItems = [];
+
+  for (var i = 0; i < items.length; i++) {
+    if (items[i].name.toLowerCase().indexOf(searchString.toLowerCase()) !== -1 ||
+      items[i].description.toLowerCase().indexOf(searchString.toLowerCase()) !== -1) {
+      filteredItems.push(items[i]);
+    }
+  }
+
+  document.getElementById("items").innerHTML = "";
+
+  for (var i = 0; i < filteredItems.length; i++) {
+    var item = filteredItems[i];
+    var li = document.createElement("li");
+    li.innerHTML = item.name + " - " + item.description;
+    document.getElementById("items").appendChild(li);
+  }
+}
+
+document.getElementById("search").addEventListener("keyup", search);
+
+function submit("onClick",submit) {
+  var name = document.getElementById("name").value;
+  var email = document.getElementById("email").value;
+
+  localStorage.setItem("name", name);
+  localStorage.setItem("email", email);
+}
+
+</script>
+</body>
+</html>
