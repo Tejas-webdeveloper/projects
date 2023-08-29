@@ -1,0 +1,51 @@
+<html>
+<head>
+<title>Search Items</title>
+</head>
+<body>
+<h1>Search Items</h1>
+<input type="search" id="search" placeholder="Enter search string">
+<br>
+<ul id="items">
+</ul>
+<script>
+const searchInput = document.getElementById("search");
+const itemsList = document.getElementById("items");
+
+const items = [
+  {
+    name: "Item 1",
+    description: "This is the description of item 1.",
+  },
+  {
+    name: "Item 2",
+    description: "This is the description of item 2.",
+  },
+  {
+    name: "Item 3",
+    description: "This is the description of item 3.",
+  },
+];
+
+searchInput.addEventListener("input", (event) => {
+
+  const searchString = event.target.value;
+
+
+  itemsList.innerHTML = "";
+
+
+  for (const item of items) {
+    if (item.name.includes(searchString) || item.description.includes(searchString)) {
+      itemsList.innerHTML += `
+        <li>
+          <strong>${item.name}</strong>
+          <p>${item.description}</p>
+        </li>
+      `;
+    }
+  }
+});
+</script>
+</body>
+</html>
