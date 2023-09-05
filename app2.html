@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Booking App</title>
+</head>
+<body>
+  <div id="container">
+    <form>
+      <input type="text" id="name" placeholder="Name">
+      <input type="email" id="email" placeholder="Email">
+      <input type="tel" id="phone" placeholder="Phone">
+      <button type="submit">Submit</button>
+    </form>
+    
+  </div>
+  <script>
+const userDetails = {
+  name: document.getElementById("name").value,
+  email: document.getElementById("email").value,
+  phone: document.getElementById("phone").value,
+};
+
+localStorage.setItem("userDetails", JSON.stringify(userDetails));
+
+const storedUserDetails = JSON.parse(localStorage.getItem("userDetails"));
+
+const html = `
+  <ul>
+    <li>Name: ${storedUserDetails.name}</li>
+    <li>Email: ${storedUserDetails.email}</li>
+    <li>Phone: ${storedUserDetails.phone}</li>
+  </ul>
+`;
+document.getElementById("userDetails").innerHTML = html;
+
+const deleteButton = document.createElement("button");
+deleteButton.textContent = "Delete";
+deleteButton.addEventListener("click", () => {
+  localStorage.removeItem("userDetails");
+
+  document.getElementById("userDetails").innerHTML = "";
+});
+document.getElementById("container").appendChild(deleteButton);
+
+</script>
+</body>
+</html>
