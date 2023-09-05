@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Store User Details in Local Storage</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+</head>
+<body>
+<h1>Store User Details in Local Storage</h1>
+<form onsubmit="saveUserDetails()">
+  <input type="text" id="name" placeholder="Name">
+  <input type="email" id="email" placeholder="Email">
+  <button type="submit">Save</button>
+</form>
+<p id="name"></p>
+<p id="email"></p>
+
+  <script>
+function saveUserDetails() {
+  var name = $("#name").val();
+  var email = $("#email").val();
+
+  var user = {
+    name: name,
+    email: email
+  };
+
+  localStorage.setItem("user", JSON.stringify(user));
+}
+
+function showUserDetails() {
+  var user = JSON.parse(localStorage.getItem("user"));
+
+  $("#name").text(user.name);
+  $("#email").text(user.email);
+}
+</script>
+</body>
+</html>
